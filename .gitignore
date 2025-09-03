@@ -7,3 +7,9 @@ node_modules
 # Other
 .DS_Store
 .env.local
+
+# Turborepo
+.turbo
+
+# Build output
+/dist/
