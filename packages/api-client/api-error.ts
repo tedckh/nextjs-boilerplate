@@ -1,5 +1,5 @@
-import { ApiResponse } from 'apisauce'
-import { ApiProblem } from './api-problem'
+import { ApiResponse } from 'apisauce';
+import { ApiProblem } from './api-problem';
 
 export class ApiError<T = any> extends Error {
   /**
@@ -15,43 +15,43 @@ export class ApiError<T = any> extends Error {
    * `cancelled` - The request is being cancelled by the frontend custom logic
    * `unknown` - Something truly unexpected happened. Most likely there should be an original error
    */
-  public readonly kind: ApiProblem['kind']
+  public readonly kind: ApiProblem['kind'];
 
   /**
    * Is the error temporary. `true` only when the error could be try again
    */
-  public readonly isTemporary: boolean
+  public readonly isTemporary: boolean;
 
   /**
    * The API response object. Available only when there is no internal error in frontend
    */
-  public readonly response?: ApiResponse<T>
+  public readonly response?: ApiResponse<T>;
 
   /**
    * The original error object. Available only when the error is thrown by an underneath calls
    */
-  public readonly originalError?: Error
+  public readonly originalError?: Error;
 
   public constructor(
     apiProblem: ApiProblem,
     response?: ApiResponse<T>,
     originalError?: Error,
   ) {
-    super(apiProblem.kind)
+    super(apiProblem.kind);
 
-    this.kind = apiProblem.kind
+    this.kind = apiProblem.kind;
 
     this.isTemporary =
-      (apiProblem as { temporary: true | undefined }).temporary ?? false
+      (apiProblem as { temporary: true | undefined }).temporary ?? false;
 
-    this.response = response
+    this.response = response;
 
-    this.originalError = originalError
+    this.originalError = originalError;
 
-    Object.setPrototypeOf(this, ApiError.prototype)
+    Object.setPrototypeOf(this, ApiError.prototype);
   }
 }
 
 export function isApiError(error: any) {
-  return error instanceof ApiError
+  return error instanceof ApiError;
 }

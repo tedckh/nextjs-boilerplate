@@ -1,0 +1,18 @@
+# Dependencies
+node_modules
+.yarn
+
+# Build outputs
+.next
+out
+dist
+build
+
+# Turborepo
+.turbo
+
+# Other
+.DS_Store
+*.pem
+*.tsbuildinfo
+next-env.d.ts

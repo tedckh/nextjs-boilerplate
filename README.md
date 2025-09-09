@@ -3,6 +3,7 @@
 This is a professional boilerplate for building full-stack applications, structured as a high-performance monorepo using [Turborepo](https://turbo.build/).
 
 It comes pre-configured with:
+
 - Next.js
 - React
 - TypeScript
