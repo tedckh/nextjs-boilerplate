@@ -1,0 +1,41 @@
+@use 'src/styles/main' as *;
+
+.cta {
+  background-color: $primary-accent;
+  color: $background;
+  padding: 5rem 1rem;
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-semibold;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: $font-size-lg;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: $background;
+  color: $primary-accent;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+  transition: transform 0.2s;
+}
+
+.ctaButton:hover {
+  transform: scale(1.05);
+}

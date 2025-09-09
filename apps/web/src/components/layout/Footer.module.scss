@@ -1,0 +1,15 @@
+@use 'src/styles/main' as *;
+
+.footer {
+  background-color: $grey-50;
+  border-top: 1px solid $grey-200;
+  padding: 2rem 0;
+  text-align: center;
+  color: $grey-600;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}

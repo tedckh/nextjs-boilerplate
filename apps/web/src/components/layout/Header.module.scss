@@ -1,0 +1,31 @@
+@use 'src/styles/main' as *;
+
+.header {
+  background-color: $background;
+  border-bottom: 1px solid $grey-200;
+  padding: 1rem 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-2xl;
+}
+
+.nav a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: $foreground;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
