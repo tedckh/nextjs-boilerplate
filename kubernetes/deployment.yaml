@@ -20,6 +20,16 @@ spec:
           image: your-docker-hub-username/my-demo-web:v1.0.0
           ports:
             - containerPort: 3000
+          # It is a best practice to define resource requests and limits for your containers.
+          # This helps Kubernetes schedule pods efficiently and prevents resource starvation.
+          # These values are just examples and should be adjusted based on application performance.
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m" # 100 millicpu (0.1 CPU core)
+            limits:
+              memory: "256Mi"
+              cpu: "500m" # 500 millicpu (0.5 CPU core)
           envFrom:
             - configMapRef:
                 name: webapp-config
