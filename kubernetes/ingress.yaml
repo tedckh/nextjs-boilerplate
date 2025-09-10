@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: your-app.example.com # Replace with your actual domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                # This must match the name of the Service we created
+                name: webapp-service
+                port:
+                  # This must match the port exposed by the Service
+                  number: 80
+  # tls:
+  #   - hosts:
+  #       - your-app.example.com
+  #     secretName: your-app-tls-secret # Secret containing your TLS cert

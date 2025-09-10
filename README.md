@@ -123,6 +123,40 @@ docker run -d --rm --name my-prod-app --env-file ./prod.env -p 3000:3000 your-im
 - **View logs:** `docker logs my-prod-app`
 - **Stop the container:** `docker stop my-prod-app`
 
+## Local Testing with Kubernetes (Minikube)
+
+You can test the full Kubernetes deployment on your local machine using Minikube.
+
+**Prerequisites:** Minikube and kubectl must be installed.
+
+1.  **Start Minikube:**
+    `minikube start`
+
+2.  **Point Docker to Minikube's Environment:**
+    This command ensures that when you build an image, it's available inside the Minikube cluster without needing a remote registry.
+    `eval $(minikube docker-env)`
+
+3.  **Build the Image:**
+    From the project root, build your image with a simple name.
+    `docker build -t my-demo-web:v1.0.0 -f apps/web/Dockerfile .`
+
+4.  **Configure for Local Test:**
+    For local testing, you need to edit `kubernetes/deployment.yaml`. Change the `image` to the name you used above (`my-demo-web:v1.0.0`) and set `imagePullPolicy` to `Never`.
+
+5.  **Deploy to Minikube:**
+    Apply all the Kubernetes configuration files.
+    `kubectl apply -f kubernetes/`
+
+6.  **Access Your Application:**
+    Use the minikube command to open a tunnel to your service.
+    `minikube service webapp-service`
+
+7.  **Cleanup:**
+    When you're done, delete the resources from your cluster and unset the docker environment variables.
+    `kubectl delete -f kubernetes/`
+    `eval $(minikube docker-env -u)`
+
+
 ## Common Commands
 
 All commands should be run from the root of the monorepo.
