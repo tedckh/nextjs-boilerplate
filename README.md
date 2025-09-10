@@ -56,6 +56,73 @@ npm run dev
 
 This will start the Next.js app in development mode, typically accessible at `http://localhost:3000`.
 
+## Getting Started with Docker
+
+This project is also fully containerized, allowing you to run the development and production environments without needing to manage Node.js or dependencies on your local machine.
+
+**Prerequisites:** Docker and Docker Compose must be installed.
+
+### 1. Local Development Environment
+
+To start the development server with hot-reloading, follow these steps from the root directory of the `nextjs-boilerplate` project.
+
+**A. One-Time Dependency Install**
+
+First, you need to install all monorepo dependencies inside a dedicated Docker volume. This is a one-time command:
+
+```bash
+docker-compose run --rm web npm install
+```
+*(You only need to run this command again if you change dependencies in `package.json`)*
+
+**B. Start the Development Server**
+
+After the dependencies are installed, you can start the development server:
+
+```bash
+docker-compose up
+```
+The web application will be available at `http://localhost:3000`.
+
+### 2. Building the Production Image
+
+To build the final, optimized production Docker image, run the following command from the root directory of the `nextjs-boilerplate` project:
+
+```bash
+docker build -t your-image-name:v1.0.0 -f apps/web/Dockerfile .
+```
+
+This creates a portable image of your application that is ready for deployment.
+
+### 3. Running the Production Image
+
+After building the image and transferring it to your server, you can run it as a container.
+
+**A. Create a Production Environment File**
+
+On your server (e.g., UAT or Prod), create a file named `prod.env`. This file will contain your environment-specific configuration.
+
+```bash
+# prod.env
+NODE_ENV=production
+# Add other variables like database URLs or API keys here
+# NEXT_PUBLIC_API_URL=https://api.production.example.com
+```
+
+**B. Run the Container**
+
+Use the `docker run` command to start your application. This command runs the container in detached mode (`-d`) and gives it a name for easy reference.
+
+```bash
+docker run -d --rm --name my-prod-app --env-file ./prod.env -p 3000:3000 your-image-name:v1.0.0
+```
+
+**C. Managing the Container**
+
+- **Check status:** `docker ps`
+- **View logs:** `docker logs my-prod-app`
+- **Stop the container:** `docker stop my-prod-app`
+
 ## Common Commands
 
 All commands should be run from the root of the monorepo.

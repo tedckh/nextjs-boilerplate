@@ -1,0 +1,18 @@
+# See https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
+# Dependencies
+node_modules
+
+# Local Environment Variables
+.env*.local
+.env.development
+.env.production
+
+# Next.js build cache
+.next
+
+# Turbo cache
+.turbo
+
+# VS Code
+.vscode

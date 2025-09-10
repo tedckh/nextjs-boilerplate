@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  web:
+    container_name: monorepo-web-dev
+    image: node:18-alpine
+    working_dir: /app
+    command: npm run dev -- --filter=@tedckh/web
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./apps/web/.env.development
+
+volumes:
+  node_modules: {}
